@@ -1,0 +1,31 @@
+<div class="container">
+  <section id="products">
+    <div class="row">
+      <div class="col-md-4" *ngFor='let book of books'>
+
+        <div class="thumbnail">
+          <img [src]='book.bookImageUrl' [style.width.px]='imageWidth' *ngIf='showImage'>
+          <div class="caption">
+            <button class="btn btn-primary" (click)='toggleImage()'>{{ showImage ? 'Hide Image' : 'Show Image' }}</button>
+            <h4 class="pull-right">
+              {{book.bookPrice | currency:'USD':true}}
+            </h4>
+            <h4><a href="product.html">{{book.bookTitle}}</a></h4>
+            <p><b>Author: </b>{{book.bookAuthor}}</p>
+            <p><b>Description: </b>{{book.bookDescription | limitChar:50}}</p>
+            <p><b>Published on: </b>{{book.publishedOn | date:'longDate'}}</p>
+            <p><b>In Stock: </b>{{book.inStock | uppercase}}</p>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <span class="glyphicon glyphicon-star"></span>
+            <p class="pull-right">{{book.bookReviews}} Reviews</p>
+            <div class="clearfix"></div>
+            <p class="text-success" *ngIf='booksInStock > 0'>Number in Stock {{book.booksInStock}}</p>
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </section>
+</div>
