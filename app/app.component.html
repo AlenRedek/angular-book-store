@@ -2,7 +2,7 @@
       <header>
         <div class="row">
           <div class="col-md-4 col-sm-12">
-            <h1 class="logo"><i class="fa fa-book"></i>Dev <span class="primary">Book Store</span></h1>
+            <h1 class="logo" appHighlight><i class="fa fa-book"></i>Dev <span class="primary">Book Store</span></h1>
           </div>
         </div>
       </header>
@@ -21,11 +21,12 @@
             <ul class="nav navbar-nav">
               <li><a href="#">Home</a></li>
               <li><a href="#">All Books</a></li>
+              <li><a href="#">{{searchBox}}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
              <form class="navbar-form">
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search..." name="searchBox">
+                <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchBox" name="searchBox">
               </div>
               <button type="submit" class="btn btn-default">Search</button>
              </form>

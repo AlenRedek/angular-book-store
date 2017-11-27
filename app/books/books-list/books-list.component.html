@@ -1,15 +1,17 @@
 <div class="container">
   <section id="products">
     <div class="row">
-      <div class="col-md-4" *ngFor='let book of books'>
+      <div class="container">
+        <h2>{{favoriteMessage}}</h2>
+      </div>
 
+      <div class="col-md-4" *ngFor='let book of books'>
         <div class="thumbnail">
           <img [src]='book.bookImageUrl' [style.width.px]='imageWidth' *ngIf='showImage'>
           <div class="caption">
             <button class="btn btn-primary" (click)='toggleImage()'>{{ showImage ? 'Hide Image' : 'Show Image' }}</button>
-            <h4 class="pull-right">
-              {{book.bookPrice | currency:'USD':true}}
-            </h4>
+            <button class="btn btn-warning" (click)='changeMethod()'>Click Me</button>
+            <h4 class="pull-right">{{book.bookPrice | currency:'USD':true}}</h4>
             <h4><a href="product.html">{{book.bookTitle}}</a></h4>
             <p><b>Author: </b>{{book.bookAuthor}}</p>
             <p><b>Description: </b>{{book.bookDescription | limitChar:50}}</p>
@@ -22,9 +24,14 @@
             <p class="pull-right">{{book.bookReviews}} Reviews</p>
             <div class="clearfix"></div>
             <p class="text-success" *ngIf='booksInStock > 0'>Number in Stock {{book.booksInStock}}</p>
-            </div>
+            <bs-favorite
+              [reviews]="book.bookReviews"
+              [favorite]="book.bookTitle"
+              (favoriteClicked)="onFavoriteClicked($event)">
+            </bs-favorite>
           </div>
         </div>
+      </div>
 
     </div>
   </section>
