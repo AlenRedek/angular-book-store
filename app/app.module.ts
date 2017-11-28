@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent }   from './app.component';
+import { BookService } from './books/book.service';
+import { HomeComponent } from './home/home.component';
 import { BooksListComponent } from './books/books-list/books-list.component';
+import { FavoriteComponent } from './favorites/favorite.component';
 import { HighlightDirective } from './shared/highlight.directive';
 import { TruncatePipe } from './shared/pipes/truncate.pipe';
-import { FavoriteComponent } from './favorites/favorite.component';
-import { BookService } from './books/book.service';
+
 
 @NgModule({
   imports:      [
@@ -17,13 +19,14 @@ import { BookService } from './books/book.service';
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
+      {path: 'home', component: HomeComponent},
       {path: 'books', component: BooksListComponent},
-      {path: '', redirectTo: 'books', pathMatch: 'full'},
-      {path: '**', redirectTo: 'books', pathMatch: 'full'}
+      {path: '', redirectTo: 'home', pathMatch: 'full'},
+      {path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])
   ],
   providers:    [ BookService ],
-  declarations: [ AppComponent, BooksListComponent, HighlightDirective, TruncatePipe, FavoriteComponent ],
+  declarations: [ AppComponent, HomeComponent, BooksListComponent, FavoriteComponent, HighlightDirective, TruncatePipe ],
   bootstrap:    [ AppComponent ]
 })
 
