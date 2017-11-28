@@ -9,9 +9,8 @@
         <div class="thumbnail">
           <img [src]='book.imageUrl' [style.width.px]='imageWidth' *ngIf='showImage'>
           <div class="caption">
-            <button class="btn btn-primary" (click)='toggleImage()'>{{ showImage ? 'Hide Image' : 'Show Image' }}</button>
             <h4 class="pull-right">{{book.price | currency:'USD':true}}</h4>
-            <h4><a href="product.html">{{book.name | uppercase}}</a></h4>
+            <h4><a [routerLink]="['/book', book.id]">{{book.name | uppercase}}</a></h4>
             <p><b>Author: </b>{{book.author}}</p>
             <p><b>Description: </b>{{book.description | limitChar:50}}</p>
             <p><b>Published on: </b>{{book.releaseDate | date:'longDate'}}</p>

@@ -35,8 +35,4 @@ export class BooksListComponent implements OnInit {
     this.favoriteMessage = message;
   }
 
-  toggleImage():void {
-    this.showImage = !this.showImage;
-  }
-
 }

@@ -8,6 +8,7 @@ import { AppComponent }   from './app.component';
 import { BookService } from './books/book.service';
 import { HomeComponent } from './home/home.component';
 import { BooksListComponent } from './books/books-list/books-list.component';
+import { BookDetailsComponent } from './books/book-details/book-details.component';
 import { FavoriteComponent } from './favorites/favorite.component';
 import { HighlightDirective } from './shared/highlight.directive';
 import { TruncatePipe } from './shared/pipes/truncate.pipe';
@@ -21,12 +22,13 @@ import { TruncatePipe } from './shared/pipes/truncate.pipe';
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent},
       {path: 'books', component: BooksListComponent},
+      {path: 'book/:id', component: BookDetailsComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: '**', redirectTo: 'home', pathMatch: 'full'}
     ])
   ],
   providers:    [ BookService ],
-  declarations: [ AppComponent, HomeComponent, BooksListComponent, FavoriteComponent, HighlightDirective, TruncatePipe ],
+  declarations: [ AppComponent, HomeComponent, BooksListComponent, BookDetailsComponent,FavoriteComponent, HighlightDirective, TruncatePipe ],
   bootstrap:    [ AppComponent ]
 })
 
