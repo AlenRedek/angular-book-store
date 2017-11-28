@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-//import { IBook } from '../book';
+import { Component, OnInit } from '@angular/core';
+import { IBook } from '../book';
+import { BookService } from '../book.service';
 
 @Component({
   moduleId: module.id,
@@ -7,35 +8,28 @@ import { Component } from '@angular/core';
   templateUrl: 'books-list.component.html'
 })
 
-export class BooksListComponent {
+export class BooksListComponent implements OnInit {
 
+  books:IBook[];
   favoriteMessage:string = '';
   imageWidth:number = 100;
   showImage:boolean = true;
   booksInStock:number = 10;
+  errorMessage:string;
 
-  books:any[] = [
-    {
-      bookAuthor: 'Leo Tolstoy',
-      bookTitle: 'War and Peace 2',
-      bookPrice: 19.95,
-      bookDescription: 'Book of historical fiction',
-      publishedOn: new Date('02/11/1921'),
-      inStock: 'yes',
-      bookReviews: 15,
-      bookImageUrl: 'app/assets/images/656.jpg'
-    },
-    {
-      bookAuthor: 'Leo Tolstoy',
-      bookTitle: 'War and Peace 3',
-      bookPrice: 29.95,
-      bookDescription: 'Book of historical fiction',
-      publishedOn: new Date('02/11/1921'),
-      inStock: 'yes',
-      bookReviews: 7,
-      bookImageUrl: 'app/assets/images/656.jpg'
-    }
-  ]
+  constructor(private _bookService:BookService){}
+
+  ngOnInit(){
+    this.getAllBooks();
+  }
+
+  getAllBooks(){
+    this._bookService.getBooks()
+      .subscribe(
+        response => this.books = response,
+        error => this.errorMessage = <any>error
+      );
+  }
 
   onFavoriteClicked(message:string):void {
     this.favoriteMessage = message;
